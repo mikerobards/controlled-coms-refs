@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const CharacterCounterInput = ({ text, defaults }) => {
     const maxLength = 280
     const [message, setmessage] = useState('')
+    const [error, setError] = useState(false)
 
     return <div className={`counterInput ${message.length > maxLength ? "tooLong" : ""}`}>
         <div>
@@ -17,6 +18,11 @@ const CharacterCounterInput = ({ text, defaults }) => {
             value={message}
             onChange={(e) => {
                 setmessage(e.target.value)
+                if (message.length > maxLength) {
+                    setError(true)
+                } else {
+                    setError(false)
+                }
             }}
         />
         <div>{message.length}/{maxLength}</div>
