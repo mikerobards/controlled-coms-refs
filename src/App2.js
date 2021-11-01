@@ -1,4 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+let callCount = -1
+let states = []
+
+function useState(initValue) {
+    const id = ++callCount
+
+    const setValue = (newValue) => {
+        states[id][0] = newValue
+    }
+    let tuple = [initValue, setValue]
+    states.push(tuple)
+    return tuple
+}
 
 const CharacterCounterInput = ({ text, defaults }) => {
     const maxLength = 280
